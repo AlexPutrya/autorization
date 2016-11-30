@@ -23,7 +23,7 @@ class User{
 	}
 	// Нужно проверить есть ли пользователь в базе данных
 	public function isExist(){
-		$sql = "SELECT name FROM users WHERE email = ?";
+		$sql = 'SELECT name FROM users WHERE email = ?';
 		if($this->database->selectData($sql, $this->user_email)){
 			// даем запрос и проверяем есть ли такой логин в бд если есть возбращаем
 		return true;
