@@ -6,7 +6,7 @@ $database = new DB();
 $database->connect();
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>

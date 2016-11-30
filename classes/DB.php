@@ -15,6 +15,10 @@ class DB{
 		return true;
 	}
 
-	public function 
+	public function selectData($sql, $parametr){
+		//выборка данных
+		$stmt = $this->pdo->prepare($sql, $parmetr);
+		$stmt->execute($parametr);
+	}
 }
 ?>
