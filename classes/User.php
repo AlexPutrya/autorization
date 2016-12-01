@@ -6,7 +6,7 @@ class User{
 	private $loggined;
 	private $database;
 
-	public function __construct($name, $pass, $email, $databse){
+	public function __construct($name, $pass, $email, DB $database){
 		$this->user_name = $name;
 		$this->user_pass = $pass;
 		$this->user_email = $email;
@@ -18,12 +18,13 @@ class User{
 			echo "Такой логин уже занят";
 		}else{
 			// добавляем пользователя в базу данных и авторизируем
-			$this->logIn();
+			// $this->logIn();
+			echo "Логин свободен";
 		}
 	}
 	// Нужно проверить есть ли пользователь в базе данных
 	public function isExist(){
-		$sql = 'SELECT name FROM users WHERE email = ?';
+		$sql = 'SELECT name FROM users WHERE email = :parametr';
 		if($this->database->selectData($sql, $this->user_email)){
 			// даем запрос и проверяем есть ли такой логин в бд если есть возбращаем
 		return true;

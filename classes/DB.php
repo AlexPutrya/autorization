@@ -17,8 +17,9 @@ class DB{
 
 	public function selectData($sql, $parametr){
 		//выборка данных
-		$stmt = $this->pdo->prepare($sql, $parmetr);
-		$stmt->execute($parametr);
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindParam(':parametr', $parametr);
+		$stmt->execute();
 	}
 }
 ?>
