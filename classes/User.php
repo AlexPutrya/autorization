@@ -15,7 +15,7 @@ class User{
         //Проверяем нет ли такого в БД, добавляем в базу и авторизируем
 	public function createUser(){
 		if($this->isExist()){
-			echo "Такой логин уже занят";
+			echo "Такой логин уже занят <br>";
 		}else{
 			// добавляем пользователя в базу данных и авторизируем
                         $sql = "INSERT INTO users VALUES('', :name, :email, :password)";
@@ -24,7 +24,7 @@ class User{
                                           "password" => "$this->user_pass" );
                         $this->database->addData($sql, $parametr);
                         $this->logIn();
-			echo "Поздравляем с регистрацией";
+			echo "Поздравляем с регистрацией <br>";
 		}
 	}
 	// Метод проверки наличия пользователя в бд
@@ -44,9 +44,9 @@ class User{
                 $result = $this->database->selectData($sql, $parametr);
                 if($result['password'] == $this->user_pass){
                     $this->loggined = true;
-                    echo "<br> Добро пожаловать на сайт";
+                    echo "Добро пожаловать на сайт <br>";
                 }else{
-                    echo "Неправильно введенные логин или пароль, попробуйте снова";
+                    echo "Неправильно введенные логин или пароль, попробуйте снова <br>";
                     $this->loggined = false;
                 }
 	}
