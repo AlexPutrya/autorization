@@ -39,8 +39,16 @@ class User{
 	}
 
 	public function logIn(){
-		$this->loggined = true;
-                echo "Добро пожаловать на сайт";
+                $parametr = array("email" => "$this->user_email");
+                $sql = 'SELECT password FROM users WHERE email = :email';
+                $result = $this->database->selectData($sql, $parametr);
+                if($result['password'] == $this->user_pass){
+                    $this->loggined = true;
+                    echo "<br> Добро пожаловать на сайт";
+                }else{
+                    echo "Неправильно введенные логин или пароль, попробуйте снова";
+                    $this->loggined = false;
+                }
 	}
 
 	public function logOut(){

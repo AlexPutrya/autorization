@@ -13,7 +13,7 @@ if(!empty($_POST)){
 		$post_data[$key] = htmlspecialchars($value);
 	}
 	$user = new User($post_data['user_name'], $post_data['password'], $post_data['email'], $database);
-        $user->isExist();
+        $user->logIn();
 }else{
     echo "Введите данные";
 }
@@ -33,7 +33,7 @@ if(!empty($_POST)){
 		<p>Пароль</p>
 		<input type="password" name="password"><br>
 		<input type="submit" name="login" value="Войти">
-		<input type="button" name="registrated" value="Зарегистрироватся">
+		<input type="submit" name="registrated" value="Зарегистрироватся">
 	</form>
 </body>
 </html>
