@@ -8,33 +8,39 @@ class User{
 
 	public function __construct($name, $pass, $email, DB $database){
 		$this->user_name = $name;
-		$this->user_pass = $pass;
 		$this->user_email = $email;
+                $this->user_pass = $pass;
 		$this->database = $database;
 	}
-	// тут нужно прописать метод из класа базы данных для внесения пользователя в базу
+        //Проверяем нет ли такого в БД, добавляем в базу и авторизируем
 	public function createUser(){
 		if($this->isExist()){
 			echo "Такой логин уже занят";
 		}else{
 			// добавляем пользователя в базу данных и авторизируем
-			// $this->logIn();
-			echo "Логин свободен";
+                        $sql = "INSERT INTO users VALUES('', :name, :email, :password)";
+                        $parametr = array("name" => "$this->user_name",
+                                          "email" => "$this->user_email",
+                                          "password" => "$this->user_pass" );
+                        $this->database->addData($sql, $parametr);
+                        $this->logIn();
+			echo "Поздравляем с регистрацией";
 		}
 	}
-	// Нужно проверить есть ли пользователь в базе данных
+	// Метод проверки наличия пользователя в бд
 	public function isExist(){
-		$sql = 'SELECT name FROM users WHERE email = :parametr';
-		if($this->database->selectData($sql, $this->user_email)){
-			// даем запрос и проверяем есть ли такой логин в бд если есть возвращаем
-		return true;
+                $parametr = array("email" => "$this->user_email");
+                $sql = 'SELECT name FROM users WHERE email = :email';
+		if($this->database->selectData($sql, $parametr)){
+                    return true;
 		}else{
-			return false;
+                    return false;
 		}
 	}
 
 	public function logIn(){
 		$this->loggined = true;
+                echo "Добро пожаловать на сайт";
 	}
 
 	public function logOut(){
