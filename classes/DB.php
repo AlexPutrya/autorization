@@ -20,6 +20,7 @@ class DB{
 		$stmt = $this->pdo->prepare($sql);
 		$stmt->bindParam(':parametr', $parametr);
 		$stmt->execute();
+                return $stmt->fetch();
 	}
 }
 ?>

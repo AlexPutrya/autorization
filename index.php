@@ -12,9 +12,10 @@ if(isset($_POST)){
 		$post_data[$key] = htmlspecialchars($value);
 	}
 	$user = new User($post_data['user_name'], $post_data['password'], $post_data['email'], $database);
-	$user->createUser();
+        $user->createUser();
+}else{
+    echo "Введите данные";
 }
-print_r($post_data);
 ?>
 <!doctype html>
 <html lang="ru">

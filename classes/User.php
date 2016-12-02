@@ -26,7 +26,7 @@ class User{
 	public function isExist(){
 		$sql = 'SELECT name FROM users WHERE email = :parametr';
 		if($this->database->selectData($sql, $this->user_email)){
-			// даем запрос и проверяем есть ли такой логин в бд если есть возбращаем
+			// даем запрос и проверяем есть ли такой логин в бд если есть возвращаем
 		return true;
 		}else{
 			return false;
